@@ -22,6 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   Uint8List? _image;
+  bool _isLoading = false;
 
 
 
@@ -35,11 +36,36 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
   void selectImage()async{
+
     Uint8List im = await pickImage(ImageSource.gallery);
     setState(() {
       _image = im;
     });
+  }
 
+
+
+  void signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods().signUpUser(
+        email: _emailController.text,
+        password: _pwController.text,
+        username: _usernameController.text,
+        bio: _bioController.text,
+        file: _image!
+    );
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (res != 'success') {
+      
+    }
+
+
+    
   }
 
   @override
@@ -145,19 +171,9 @@ class _SignUpPageState extends State<SignUpPage> {
               
               // SignUp button
               InkWell(
-                onTap: () async{
-                  String res = await  AuthMethods().signUpUser(
-                    email: _emailController.text, 
-                    password: _pwController.text, 
-                    username: _usernameController.text, 
-                    bio: _bioController.text, 
-                    file: _image!
-                  );
-
-                  print(res);
-                },
+                onTap: signUpUser,
                 child: Container(
-                  child: const Text("Log in"),
+                  child: _isLoading? Center(child: CircularProgressIndicator(strokeWidth: 3,color: Colors.white,),) : const Text("Sign uo"),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: EdgeInsets.symmetric(vertical: 12),
