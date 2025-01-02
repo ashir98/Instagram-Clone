@@ -3,7 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_clone/const/colors.dart';
 import 'package:insta_clone/const/images.dart';
 import 'package:insta_clone/pages/home_page.dart';
+import 'package:insta_clone/pages/signup_page.dart';
 import 'package:insta_clone/resources/auth_methods.dart';
+import 'package:insta_clone/responsive/mobile_layout.dart';
+import 'package:insta_clone/responsive/responsive_layout_screen.dart';
+import 'package:insta_clone/responsive/web_layout.dart';
 import 'package:insta_clone/utils/utils.dart';
 import 'package:insta_clone/widget/textfield_input.dart';
 
@@ -37,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
     });
     String res = await AuthMethods().loginUser(email: _emailController.text,password: _pwController.text);
     if (res == "success") {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResponsiveLayoutScreen(webLayout: WebLayout(),mobileLayout: MobileLayout(),),));
     } else {
       showSnackBar(res, context);
     }
@@ -45,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       _isLoading = false;
     });
-
+ 
 
   }
 
@@ -83,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
               
               // textfield for name
               TextFieldInput(
-                controller: _emailController, 
+                controller: _pwController, 
                 hintText: "Password", 
                 isPW: true,
                 textInputType: TextInputType.visiblePassword
@@ -121,7 +125,9 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text("don't have an account?"),
                   TextButton(
-                    onPressed:(){}, 
+                    onPressed:(){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(),));
+                    }, 
                     child: Text("Sign up")
                   )
                 ],

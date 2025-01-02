@@ -5,7 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta_clone/const/colors.dart';
 import 'package:insta_clone/const/images.dart';
+import 'package:insta_clone/pages/login_page.dart';
 import 'package:insta_clone/resources/auth_methods.dart';
+import 'package:insta_clone/responsive/mobile_layout.dart';
+import 'package:insta_clone/responsive/responsive_layout_screen.dart';
+import 'package:insta_clone/responsive/web_layout.dart';
 import 'package:insta_clone/utils/utils.dart';
 import 'package:insta_clone/widget/textfield_input.dart';
 
@@ -61,7 +65,11 @@ class _SignUpPageState extends State<SignUpPage> {
     });
 
     if (res != 'success') {
-      
+      showSnackBar(res, context);
+    }
+    else{
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResponsiveLayoutScreen(webLayout: WebLayout(),mobileLayout: MobileLayout(),),));
+
     }
 
 
@@ -198,7 +206,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: [
                   Text("Already have an account?"),
                   TextButton(
-                    onPressed:(){}, 
+                    onPressed:(){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+                    }, 
                     child: Text("Sign in")
                   )
                 ],
