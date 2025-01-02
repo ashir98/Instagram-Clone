@@ -1,18 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_clone/const/dimensions.dart';
+import 'package:insta_clone/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
-class ResponsiveLayoutScreen extends StatelessWidget {
+class ResponsiveLayoutScreen extends StatefulWidget {
   Widget webLayout, mobileLayout;
   ResponsiveLayoutScreen({super.key, required this.webLayout, required this.mobileLayout});
 
   @override
+  State<ResponsiveLayoutScreen> createState() => _ResponsiveLayoutScreenState();
+}
+
+class _ResponsiveLayoutScreenState extends State<ResponsiveLayoutScreen> {
+  
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
+
+  getUserData()async{
+    UserProvider _userProvider = Provider.of<UserProvider>(context,listen: false);
+    await _userProvider.refreshUser();
+  }
+  
+  @override
   Widget build(BuildContext context) {
+
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > webScreenSize) {
-          return webLayout;
+          return widget.webLayout;
         }
-        else return mobileLayout;
+        else return widget.mobileLayout;
       },
     );
   }

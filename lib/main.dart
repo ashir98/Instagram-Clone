@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:insta_clone/firebase_options.dart';
 import 'package:insta_clone/pages/login_page.dart';
 import 'package:insta_clone/pages/signup_page.dart';
+import 'package:insta_clone/providers/user_provider.dart';
 import 'package:insta_clone/responsive/mobile_layout.dart';
 import 'package:insta_clone/responsive/responsive_layout_screen.dart';
 import 'package:insta_clone/responsive/web_layout.dart';
 import 'package:insta_clone/themes/dark_theme.dart';
+import 'package:provider/provider.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,11 +18,16 @@ void main()async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    DevicePreview(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider(),)
+      ],
+      child: DevicePreview(
       enabled: true,
       builder: (context) {
         return const MyApp();
       },
+    ),
     )
   );
 }
