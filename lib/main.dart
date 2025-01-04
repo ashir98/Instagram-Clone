@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_clone/firebase_options.dart';
 import 'package:insta_clone/pages/login_page.dart';
-import 'package:insta_clone/pages/signup_page.dart';
 import 'package:insta_clone/providers/user_provider.dart';
 import 'package:insta_clone/responsive/mobile_layout.dart';
 import 'package:insta_clone/responsive/responsive_layout_screen.dart';

@@ -1,11 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_clone/const/dimensions.dart';
 import 'package:insta_clone/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class ResponsiveLayoutScreen extends StatefulWidget {
-  Widget webLayout, mobileLayout;
+  final Widget webLayout, mobileLayout;
   ResponsiveLayoutScreen({super.key, required this.webLayout, required this.mobileLayout});
 
   @override

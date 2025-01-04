@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_clone/const/colors.dart';
 import 'package:insta_clone/const/images.dart';
-import 'package:insta_clone/pages/home_page.dart';
 import 'package:insta_clone/pages/signup_page.dart';
 import 'package:insta_clone/resources/auth_methods.dart';
 import 'package:insta_clone/responsive/mobile_layout.dart';

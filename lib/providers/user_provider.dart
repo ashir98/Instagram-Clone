@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_clone/model/user_model.dart';
 import 'package:insta_clone/resources/auth_methods.dart';
