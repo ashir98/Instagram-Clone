@@ -22,7 +22,7 @@ void main()async {
         ChangeNotifierProvider(create: (context) => UserProvider(),)
       ],
       child: DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) {
         return const MyApp();
       },
@@ -30,6 +30,9 @@ void main()async {
     )
   );
 }
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

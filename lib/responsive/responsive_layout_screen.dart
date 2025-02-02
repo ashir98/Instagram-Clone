@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:insta_clone/const/dimensions.dart';
+import 'package:insta_clone/const/global_variables.dart';
 import 'package:insta_clone/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
